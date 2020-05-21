@@ -1,4 +1,6 @@
-type BaseAction<T = any> = {
+import { Todo } from "../Todo.type";
+
+export type BaseAction = {
     type: string,
-    payload: T
+    payload: string | number | Todo 
 }

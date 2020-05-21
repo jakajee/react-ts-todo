@@ -2,13 +2,12 @@ import * as React from 'react';
 import ButtonIncreaseMax from './ButtonIncreaseMax';
 
 
+
 const TodoAdd = (props) => {
-    const { todoContext } = props;
     const [todo, setTodo] = React.useState('');
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();        
-        todoContext.addTodos(todo);
         setTodo('');
     }
 
