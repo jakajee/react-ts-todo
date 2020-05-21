@@ -1,7 +1,6 @@
 import * as React from 'react';
 import TodoMain from '../Todo/components/TodoMain';
 import { render, fireEvent, RenderResult } from '@testing-library/react';
-import StoreEnvironment from '../Todo/contexts/EnvironmentContext';
 
 
 describe("<TodoMain />", () => {
@@ -12,9 +11,7 @@ describe("<TodoMain />", () => {
 
     beforeEach(() => {
         app = render(
-            <StoreEnvironment>
                 <TodoMain />
-            </StoreEnvironment>
         );
     })
 

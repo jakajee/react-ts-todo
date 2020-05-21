@@ -1,14 +1,8 @@
 import * as React from 'react';
-import TodoContext from '../contexts/TodoContext';
 import ButtonIncreaseMax from './ButtonIncreaseMax';
-import withContext from '../contexts/withContext';
-import { ITodoContext } from '../contexts/TodoContext.type';
 
-type TodoAddProps = {
-    todoContext: ITodoContext
-};
 
-const TodoAdd = (props: TodoAddProps) => {
+const TodoAdd = (props) => {
     const { todoContext } = props;
     const [todo, setTodo] = React.useState('');
 
@@ -29,4 +23,4 @@ const TodoAdd = (props: TodoAddProps) => {
     )
 }
 
-export default withContext(TodoAdd, TodoContext, 'todoContext');
+export default TodoAdd;

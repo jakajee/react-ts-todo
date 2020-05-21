@@ -1,13 +1,12 @@
 import React from 'react';
-import StoreEnvironment from '../Todo/contexts/EnvironmentContext';
 import MainRoute from '../route';
 
 const App = (props: any) => {
 
     return (
-        <StoreEnvironment>
+        <React.Fragment>
             <MainRoute />            
-        </StoreEnvironment>
+        </React.Fragment>
     )
 }
 
