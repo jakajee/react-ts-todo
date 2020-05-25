@@ -4,12 +4,13 @@ import ButtonIncreaseMax from './ButtonIncreaseMax';
 import * as actions from '../actions/';
 import { BaseAction } from '../actions/action.type';
 import { Todo } from '../Todo.type';
+import { connect } from 'react-redux';
 
 type TodoAddProps = {
     addTodo(todo: Todo): BaseAction
 }
 
-const TodoAdd = (props: TodoAddProps) => {
+const TodoAdd = (props: TodoAddProps) => {    
     const [todo, setTodo] = React.useState('');
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,4 +30,4 @@ const TodoAdd = (props: TodoAddProps) => {
     )
 }
 
-export default TodoAdd;
+export default connect(null, { ...actions })(TodoAdd);

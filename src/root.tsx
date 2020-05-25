@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import { createBrowserHistory } from 'history';
 import configureStore from './Todo/store/configureStore';
 
