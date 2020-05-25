@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
 import todoListReducer from './todoListReducer';
+import { TodoState } from '../Todo.type';
 
-export default combineReducers({
+export interface ApplicationState {
+    todoList: TodoState
+}
+
+export default {
     todoList: todoListReducer
-})
+};

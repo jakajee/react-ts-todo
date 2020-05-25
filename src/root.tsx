@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { createBrowserHistory } from 'history';
+import configureStore from './Todo/store/configureStore';
 
-import reducers from './Todo/reducers'
-
-const store = createStore({
-    reducers
+const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href') as string;
+const history = createBrowserHistory({
+    basename: baseUrl
 })
+
+const store = configureStore(history);
 
 const Root: React.FC = ({ children }) => {
     return (
-        <Provider store={createStore(store)}>
+        <Provider store={store}>
             {children}
         </Provider>
     )
