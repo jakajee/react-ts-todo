@@ -1,15 +1,26 @@
 import * as React from 'react';
 import TodoItem from './TodoItem';
+import { connect } from 'react-redux';
+import { Todo } from '../Todo.type';
+import { ApplicationState } from '../reducers';
 
-const TodoList = (props) => {
-    
-    return  (
-        <React.Fragment>
-            <div>
-                Todo List
-            </div>            
-        </React.Fragment>
+type TodoListState = {
+    todoList: Array<Todo>
+}
+
+const TodoList = (props: TodoListState) => {
+    return (
+        <div>
+            Todo List
+            {props.todoList.map((item, idx) => <TodoItem {...item} key={idx} />)}
+        </div>
     )
 }
 
-export default TodoList;
+const mapStateToProps = (state: ApplicationState) => {
+    return {
+        todoList: Object.values(state.todoList)
+    }
+}
+
+export default connect(mapStateToProps, null)(TodoList);

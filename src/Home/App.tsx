@@ -1,12 +1,13 @@
 import React from 'react';
 import MainRoute from '../route';
+import Root from '../root';
 
 const App = (props: any) => {
 
     return (
-        <React.Fragment>
-            <MainRoute />            
-        </React.Fragment>
+        <Root>
+            <MainRoute />
+        </Root>
     )
 }
 

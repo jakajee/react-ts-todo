@@ -2,7 +2,7 @@ import { ADD_TODO, TOGGLE_TODO } from "../actions";
 import { BaseAction } from "../actions/action.type";
 import { TodoState, Todo } from "../Todo.type";
 
-export default function (state: TodoState, action: BaseAction): TodoState {
+export default function (state: TodoState = {}, action: BaseAction): TodoState {
     switch (action.type) {
         case ADD_TODO: return addTodoReducer(state, action);
         case TOGGLE_TODO: return toggleTodoReducer(state, action);
