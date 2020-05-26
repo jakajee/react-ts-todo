@@ -5,13 +5,18 @@ import { Todo } from '../Todo.type';
 import { ApplicationState } from '../reducers';
 
 type TodoListState = {
-    todoList: Array<Todo>
+    todoList: Array<Todo>,
+    max: number
 }
 
 const TodoList = (props: TodoListState) => {
+    const style = {
+        color: props.todoList.length >= props.max ? "red" : "black"
+    };
+
     return (
         <div>
-            Todo List
+            Todo List <strong style={style}>({props.max})</strong>
             {props.todoList.map((item, index) => 
                 <TodoItem  key={index} {...item} index={index} />)}
         </div>
@@ -20,7 +25,8 @@ const TodoList = (props: TodoListState) => {
 
 const mapStateToProps = (state: ApplicationState) => {
     return {
-        todoList: Object.values(state.todoList)
+        todoList: Object.values(state.todoList),
+        max: state.maxTodo
     }
 }
 

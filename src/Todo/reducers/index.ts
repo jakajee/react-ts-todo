@@ -1,10 +1,13 @@
 import todoListReducer from './todoListReducer';
 import { TodoState } from '../Todo.type';
+import maxTodoReducer from './maxTodoReducer';
 
 export interface ApplicationState {
-    todoList: TodoState
+    todoList: TodoState,
+    maxTodo: number
 }
 
 export default {
-    todoList: todoListReducer
+    todoList: todoListReducer,
+    maxTodo: maxTodoReducer
 };

@@ -13,14 +13,14 @@ export default function (state: TodoState = {}, action: BaseAction): TodoState {
 function addTodoReducer(state: TodoState, action: BaseAction) {
     const newTodo = <Todo>action.payload;
     const idx = Object.keys(state).length;
+    
     return {
         ...state,
         [idx]: { ...newTodo }
     }
 }
 
-function toggleTodoReducer(state: TodoState, action: BaseAction) {
-    debugger;
+function toggleTodoReducer(state: TodoState, action: BaseAction) {    
     const index = <number>action.payload;
     const todo: Todo = state[index];
     return {
