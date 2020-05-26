@@ -1,17 +1,20 @@
 import * as React from 'react';
 import TodoMain from '../Todo/components/TodoMain';
 import { render, fireEvent, RenderResult } from '@testing-library/react';
+import Root from '../root';
 
 
 describe("<TodoMain />", () => {
     window.alert = (value) => {
-    } 
+    }
 
     let app: RenderResult;
 
     beforeEach(() => {
         app = render(
+            <Root>
                 <TodoMain />
+            </Root>
         );
     })
 
@@ -30,12 +33,12 @@ describe("<TodoMain />", () => {
 
         const input = await findByTestId('txtTodo');
         fireEvent.change(input, { target: { value: newTodo } });
-        
+
         const form = await findByTestId('frmTodoAdd')
         fireEvent.submit(form);
-        
+
         expect(input).toHaveValue('');
-        expect(queryAllByText(newTodo)).toHaveLength(1);       
+        expect(queryAllByText(newTodo)).toHaveLength(1);
         expect(container.querySelectorAll('li')).toHaveLength(1);
     })
 
@@ -47,40 +50,40 @@ describe("<TodoMain />", () => {
         fireEvent.change(input, { target: { value: newTodo } });
 
         const form = await findByTestId('frmTodoAdd')
-        fireEvent.submit(form);        
+        fireEvent.submit(form);
 
-        expect(container.querySelectorAll('li')).toHaveLength(0);         
+        expect(container.querySelectorAll('li')).toHaveLength(0);
     })
 
     it("should has all added todo", async () => {
         const newTodo = 'test';
         const { container, findByTestId, queryAllByText } = app;
-        
+
         const input = await findByTestId('txtTodo');
         const form = await findByTestId('frmTodoAdd');
 
-        for(let i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
             fireEvent.change(input, { target: { value: newTodo } });
             fireEvent.submit(form);
         }
 
-        expect(queryAllByText(newTodo)).toHaveLength(10);       
+        expect(queryAllByText(newTodo)).toHaveLength(10);
         expect(container.querySelectorAll('li')).toHaveLength(10);
     })
 
     it("should prevent added more than maximum todo", async () => {
         const newTodo = 'test';
         const { container, findByTestId, queryAllByText } = app;
-        
+
         const input = await findByTestId('txtTodo');
         const form = await findByTestId('frmTodoAdd');
 
-        for(let i = 0; i < 11; i++) {
+        for (let i = 0; i < 11; i++) {
             fireEvent.change(input, { target: { value: newTodo } });
             fireEvent.submit(form);
         }
 
-        expect(queryAllByText(newTodo)).toHaveLength(10);       
+        expect(queryAllByText(newTodo)).toHaveLength(10);
         expect(container.querySelectorAll('li')).toHaveLength(10);
     })
 })
