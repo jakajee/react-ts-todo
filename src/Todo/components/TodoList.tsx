@@ -12,7 +12,8 @@ const TodoList = (props: TodoListState) => {
     return (
         <div>
             Todo List
-            {props.todoList.map((item, idx) => <TodoItem {...item} key={idx} />)}
+            {props.todoList.map((item, index) => 
+                <TodoItem  key={index} {...item} index={index} />)}
         </div>
     )
 }

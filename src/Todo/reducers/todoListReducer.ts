@@ -15,11 +15,12 @@ function addTodoReducer(state: TodoState, action: BaseAction) {
     const idx = Object.keys(state).length;
     return {
         ...state,
-        [idx + 1]: { ...newTodo }
+        [idx]: { ...newTodo }
     }
 }
 
 function toggleTodoReducer(state: TodoState, action: BaseAction) {
+    debugger;
     const index = <number>action.payload;
     const todo: Todo = state[index];
     return {

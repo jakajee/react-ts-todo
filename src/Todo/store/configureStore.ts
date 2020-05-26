@@ -1,6 +1,6 @@
 import { History } from 'history';
 import reducers, { ApplicationState } from '../reducers';
-import { combineReducers, createStore, compose } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
 function configureStore(

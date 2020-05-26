@@ -13,6 +13,7 @@ export function addTodo(todo: Todo): BaseAction {
 }
 
 export function toggleTodo(index: number): BaseAction {
+    console.log(index);
     return {
         type: TOGGLE_TODO,
         payload: index
