@@ -1,8 +1,7 @@
 import * as React from 'react';
 import TodoMain from '../Todo/components/TodoMain';
 import { render, fireEvent, RenderResult } from '@testing-library/react';
-import Root from '../root';
-
+import { RootTest } from './ignore/Helper';
 
 describe("<TodoMain />", () => {
     window.alert = (value) => {
@@ -12,9 +11,9 @@ describe("<TodoMain />", () => {
 
     beforeEach(() => {
         app = render(
-            <Root>
+            <RootTest>
                 <TodoMain />
-            </Root>
+            </RootTest>
         );
     })
 
@@ -85,6 +84,28 @@ describe("<TodoMain />", () => {
 
         expect(queryAllByText(newTodo)).toHaveLength(10);
         expect(container.querySelectorAll('li')).toHaveLength(10);
+    })
+
+    it("should allow added more todo after increase maximum todo", async () => {
+        const newTodo = 'test';
+        const { container, findByTestId, queryAllByText } = app;
+
+        const input = await findByTestId('txtTodo');
+        const form = await findByTestId('frmTodoAdd');
+        const button = await findByTestId('btnExtendMax');
+
+        for (let i = 0; i < 10; i++) {
+            fireEvent.change(input, { target: { value: newTodo } });
+            fireEvent.submit(form);
+        }
+
+        fireEvent.click(button);
+
+        fireEvent.change(input, { target: { value: newTodo } });
+        fireEvent.submit(form);
+
+        expect(queryAllByText(newTodo)).toHaveLength(11);
+        expect(container.querySelectorAll('li')).toHaveLength(11);
     })
 })
 

@@ -10,7 +10,7 @@ type ButtonIncreaseMaxProps = {
 
 const ButtonIncreaseMax: React.FC<ButtonIncreaseMaxProps> = (props: ButtonIncreaseMaxProps) => {
     return (
-        <button type="button" onClick={() => props.extendMaxTodo()}>
+        <button type="button" onClick={() => props.extendMaxTodo()} data-testid="btnExtendMax">
             Increase Max
         </button>
     )

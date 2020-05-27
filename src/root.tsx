@@ -1,19 +1,16 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
-import configureStore from './Todo/store/configureStore';
+import { Store, AnyAction } from 'redux';
 
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href') as string;
-const history = createBrowserHistory({
-    basename: baseUrl
-})
+export type RootType = {
+    children: React.ReactNode,
+    store: Store<any, AnyAction>
+}
 
-const store = configureStore(history);
-
-const Root: React.FC = ({ children }) => {
+const Root: React.FC<RootType> = (props: RootType) => {
     return (
-        <Provider store={store}>
-            {children}
+        <Provider store={props.store}>
+            {props.children}
         </Provider>
     )
 }

@@ -14,6 +14,11 @@ const TodoAdd = (props: TodoAddProps) => {
     const [todo, setTodo] = React.useState('');
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        if (!todo) {
+            alert('please input value');
+            return;
+        }
+
         e.preventDefault();
         setTodo('');
         props.addTodo({ todo, flagComplete: false });
